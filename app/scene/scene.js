@@ -1,4 +1,4 @@
-import { WebGLRenderer, Container } from 'pixi.js';
+import { CanvasRenderer, WebGLRenderer, Container } from 'pixi.js';
 var pixi = require('pixi.js')
 
 class Scene {
@@ -10,7 +10,7 @@ class Scene {
 
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    this.renderer = new WebGLRenderer( this.width, this.height, { antialias: true } );
+    this.renderer = new CanvasRenderer( this.width, this.height, { antialias: true } );
 
     this.renderer.view.style.position = 'absolute';
     this.renderer.view.style.display = 'block';

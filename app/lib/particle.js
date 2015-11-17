@@ -1,18 +1,22 @@
-import { Graphics } from 'pixi.js'
+import { Sprite } from 'pixi.js'
 
-class Particle extends Graphics {
+class Particle extends Sprite {
     constructor(options){
 
-        super();
+        var texture = PIXI.Texture.fromImage("./assets/img/particle.png");
+
+        super(texture);
         this.x = options.x;
         this.y = options.y;
         this.vx = Math.random()*2;
         this.vy = Math.random()*2;
         this.angle =  Math.floor(Math.random() * 360)+1;
         this.life = Math.random()*5000;
-        this.beginFill('0xFFFFFF');
+        //this.beginFill('0xFFFFFF');
         this.size = Math.random()*2;
-        this.drawCircle(0, 0, this.size);
+        //this.drawCircle(0, 0, this.size);
+
+
 
     }
 
