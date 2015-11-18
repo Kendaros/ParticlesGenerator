@@ -10,7 +10,7 @@ class Emitter {
         this.particles = [];
         this.pool = [];
         this.currentTime = 0;
-        this.nb = 10000;
+        this.nb = 40000;
 
         this.options = {
             x: window.innerWidth / 2,
@@ -25,18 +25,24 @@ class Emitter {
             this.pool.push(particle);
         }
 
-        this.throw(100);
+        this.throw(1);
 
     }
 
     getParticleFromPool() {
         let p = this.pool[0];
+
+        p.reset(this.options);
+
         this.pool.splice(0,1);
         return p;
     }
 
-    returnParticleToPool(particle) {
+    returnParticleToPool(particle, index) {
         this.pool.push(particle);
+
+        this.particles.splice(index, 1);
+        this.scene.removeChild(this.particles[index]);
     }
 
     throw(nb){
@@ -55,21 +61,22 @@ class Emitter {
     }
 
     update(dt){
+
         //console.info(this.particles.length, this.pool.length);
         for(var i = 0; i < this.particles.length; i++) {
             this.particles[i].move(dt);
 
-            if(this.currentTime > Utils.getRandomInt(1000,2000)) {
+            if(this.currentTime > 10) {
                 this.currentTime = 0;
-                this.throw(100);
+                this.throw(1);
             }
 
-            if(this.particles[i].life <= 0){
+            if(!this.particles[i].isAlive){
 
-                this.returnParticleToPool(this.particles[i]);
-                this.particles.splice(i, 1);
-                this.scene.removeChild(this.particles[i]);
+                this.returnParticleToPool(this.particles[i], i);
             }
+
+            //console.info(this.particles[i].life);
         }
         this.currentTime += dt;
     }

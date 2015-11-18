@@ -24,10 +24,8 @@ class App {
     root.appendChild( this.scene.renderer.view );
 
     this.ball = new Graphics();
-    this.ball.beginFill( 0xFFFFFF );
-    this.ball.drawCircle( 0, 0, 10 );
-    this.ball.y = window.innerHeight / 2;
-    this.ball.x = window.innerWidth / 2;
+    this.ball.beginFill( 0xFF0000 );
+    this.ball.drawCircle( window.innerWidth / 2, window.innerHeight / 2, 10 );
     this.scene.addChild( this.ball );
 
 
